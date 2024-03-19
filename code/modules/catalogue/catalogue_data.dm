@@ -110,7 +110,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	var/desc_length_limit = 750
 	var/displayed_desc = desc
 	if(length(desc) > desc_length_limit)
-		displayed_desc = copytext(displayed_desc, 1, desc_length_limit + 1)
+		displayed_desc = copytext_char(displayed_desc, 1, desc_length_limit + 1)
 		displayed_desc += "... (View databanks for full data)"
 
 	to_chat(user, span("notice", "<i>[displayed_desc]</i>"))
@@ -123,7 +123,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 		if (size <= length)
 			return message
 		else
-			return copytext(message, 1, length + 1)
+			return copytext_char(message, 1, length + 1)
 */
 
 /datum/category_item/catalogue/flora

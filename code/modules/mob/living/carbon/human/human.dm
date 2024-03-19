@@ -687,13 +687,13 @@
 				src << browse(null, "window=flavor_changes")
 				return
 			if("general")
-				var/msg = strip_html_simple(tgui_input_text(usr,"Update the general description of your character. This will be shown regardless of clothing.","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]]), multiline = TRUE, prevent_enter = TRUE))	//VOREStation Edit: separating out OOC notes
+				var/msg = (tgui_input_text(usr,"Update the general description of your character. This will be shown regardless of clothing.","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]]), multiline = TRUE, prevent_enter = TRUE))	//VOREStation Edit: separating out OOC notes
 				if(msg)
 					flavor_texts[href_list["flavor_change"]] = msg
 					set_flavor()
 				return
 			else
-				var/msg = strip_html_simple(tgui_input_text(usr,"Update the flavor text for your [href_list["flavor_change"]].","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = (tgui_input_text(usr,"Update the flavor text for your [href_list["flavor_change"]].","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]]), multiline = TRUE, prevent_enter = TRUE))
 				if(msg)
 					flavor_texts[href_list["flavor_change"]] = msg
 					set_flavor()
@@ -831,21 +831,21 @@
 
 	var/new_facial = input(usr, "Please select facial hair color.", "Character Generation",rgb(r_facial,g_facial,b_facial)) as color
 	if(new_facial)
-		r_facial = hex2num(copytext(new_facial, 2, 4))
-		g_facial = hex2num(copytext(new_facial, 4, 6))
-		b_facial = hex2num(copytext(new_facial, 6, 8))
+		r_facial = hex2num(copytext_char(new_facial, 2, 4))
+		g_facial = hex2num(copytext_char(new_facial, 4, 6))
+		b_facial = hex2num(copytext_char(new_facial, 6, 8))
 
 	var/new_hair = input(usr, "Please select hair color.", "Character Generation",rgb(r_hair,g_hair,b_hair)) as color
 	if(new_facial)
-		r_hair = hex2num(copytext(new_hair, 2, 4))
-		g_hair = hex2num(copytext(new_hair, 4, 6))
-		b_hair = hex2num(copytext(new_hair, 6, 8))
+		r_hair = hex2num(copytext_char(new_hair, 2, 4))
+		g_hair = hex2num(copytext_char(new_hair, 4, 6))
+		b_hair = hex2num(copytext_char(new_hair, 6, 8))
 
 	var/new_eyes = input(usr, "Please select eye color.", "Character Generation",rgb(r_eyes,g_eyes,b_eyes)) as color
 	if(new_eyes)
-		r_eyes = hex2num(copytext(new_eyes, 2, 4))
-		g_eyes = hex2num(copytext(new_eyes, 4, 6))
-		b_eyes = hex2num(copytext(new_eyes, 6, 8))
+		r_eyes = hex2num(copytext_char(new_eyes, 2, 4))
+		g_eyes = hex2num(copytext_char(new_eyes, 4, 6))
+		b_eyes = hex2num(copytext_char(new_eyes, 6, 8))
 		update_eyes()
 
 	// hair
@@ -1221,9 +1221,9 @@
 			b_skin = example.b_skin
 	else if(species.base_color)	//VOREStation Edit end
 		//Apply colour.
-		r_skin = hex2num(copytext(species.base_color,2,4))
-		g_skin = hex2num(copytext(species.base_color,4,6))
-		b_skin = hex2num(copytext(species.base_color,6,8))
+		r_skin = hex2num(copytext_char(species.base_color,2,4))
+		g_skin = hex2num(copytext_char(species.base_color,4,6))
+		b_skin = hex2num(copytext_char(species.base_color,6,8))
 	else
 		r_skin = 0
 		g_skin = 0

@@ -70,8 +70,8 @@
 	var/splitpoint = findtext(act, " ")
 	if(splitpoint > 0)
 		var/tempstr = act
-		act = copytext(tempstr,1,splitpoint)
-		message = copytext(tempstr,splitpoint+1,0)
+		act = copytext_char(tempstr,1,splitpoint)
+		message = copytext_char(tempstr,splitpoint+1,0)
 
 	//VOREStation Add - NIF soulcatcher shortcuts
 	if(act == "nsay")
@@ -121,8 +121,8 @@
 
 	name_anchor = findtext(message, "*")
 	if(name_anchor > 0) // User supplied emote with visible_emote token (default ^)
-		pretext = copytext(message, 1, name_anchor)
-		subtext = copytext(message, name_anchor + 1, length(message) + 1)
+		pretext = copytext_char(message, 1, name_anchor)
+		subtext = copytext_char(message, name_anchor + 1, length(message) + 1)
 	else
 		// No token. Just the emote as usual.
 		subtext = message
@@ -136,12 +136,12 @@
 
 	if(pretext)
 		// Add a space at the end if we didn't already supply one.
-		end_char = copytext(pretext, length(pretext), length(pretext) + 1)
+		end_char = copytext_char(pretext, length(pretext), length(pretext) + 1)
 		if(end_char != " ")
 			pretext += " "
 
 	// Grab the last character of the emote message.
-	end_char = copytext(subtext, length(subtext), length(subtext) + 1)
+	end_char = copytext_char(subtext, length(subtext), length(subtext) + 1)
 	if(!(end_char in list(".", "?", "!", "\"", "-", "~"))) // gotta include ~ for all you fucking weebs
 		// No punctuation supplied. Tack a period on the end.
 		subtext += "."
@@ -150,7 +150,7 @@
 	if(subtext != ".")
 		// First, let's get rid of any existing space, to account for sloppy emoters ("X, ^ , Y")
 		subtext = trim_left(subtext)
-		start_char = copytext(subtext, 1, 2)
+		start_char = copytext_char(subtext, 1, 2)
 		if(start_char != "," && start_char != "'")
 			subtext = " " + subtext
 

@@ -44,7 +44,7 @@ var/warrant_uid = 0
 	for(var/datum/data/record/warrant/W in data_core.warrants)
 		allwarrants.Add(list(list(
 			"warrantname" = W.fields["namewarrant"],
-			"charges" = "[copytext(W.fields["charges"],1,min(length(W.fields["charges"]) + 1, 50))]...",
+			"charges" = "[copytext_char(W.fields["charges"],1,min(length(W.fields["charges"]) + 1, 50))]...",
 			"auth" = W.fields["auth"],
 			"id" = W.warrant_id,
 			"arrestsearch" = W.fields["arrestsearch"]

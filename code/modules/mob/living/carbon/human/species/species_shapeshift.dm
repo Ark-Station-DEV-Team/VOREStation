@@ -186,9 +186,9 @@ var/list/wrapped_species_by_ref = list()
 
 /mob/living/carbon/human/proc/shapeshifter_set_colour(var/new_skin)
 
-	r_skin =   hex2num(copytext(new_skin, 2, 4))
-	g_skin =   hex2num(copytext(new_skin, 4, 6))
-	b_skin =   hex2num(copytext(new_skin, 6, 8))
+	r_skin =   hex2num(copytext_char(new_skin, 2, 4))
+	g_skin =   hex2num(copytext_char(new_skin, 4, 6))
+	b_skin =   hex2num(copytext_char(new_skin, 6, 8))
 	r_synth = r_skin
 	g_synth = g_skin
 	b_synth = b_skin
@@ -232,15 +232,15 @@ var/list/wrapped_species_by_ref = list()
 
 /mob/living/carbon/human/proc/shapeshifter_set_hair_color(var/new_hair)
 
-	change_hair_color(hex2num(copytext(new_hair, 2, 4)), hex2num(copytext(new_hair, 4, 6)), hex2num(copytext(new_hair, 6, 8)))
+	change_hair_color(hex2num(copytext_char(new_hair, 2, 4)), hex2num(copytext_char(new_hair, 4, 6)), hex2num(copytext_char(new_hair, 6, 8)))
 
 /mob/living/carbon/human/proc/shapeshifter_set_grad_color(var/new_grad)
 
-	change_grad_color(hex2num(copytext(new_grad, 2, 4)), hex2num(copytext(new_grad, 4, 6)), hex2num(copytext(new_grad, 6, 8)))
+	change_grad_color(hex2num(copytext_char(new_grad, 2, 4)), hex2num(copytext_char(new_grad, 4, 6)), hex2num(copytext_char(new_grad, 6, 8)))
 
 /mob/living/carbon/human/proc/shapeshifter_set_facial_color(var/new_fhair)
 
-	change_facial_hair_color(hex2num(copytext(new_fhair, 2, 4)), hex2num(copytext(new_fhair, 4, 6)), hex2num(copytext(new_fhair, 6, 8)))
+	change_facial_hair_color(hex2num(copytext_char(new_fhair, 2, 4)), hex2num(copytext_char(new_fhair, 4, 6)), hex2num(copytext_char(new_fhair, 6, 8)))
 
 // Replaces limbs and copies wounds
 /mob/living/carbon/human/proc/shapeshifter_change_species(var/new_species)

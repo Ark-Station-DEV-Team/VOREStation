@@ -176,7 +176,7 @@ SUBSYSTEM_DEF(sqlite)
 			continue
 		if(length(line) == 0)
 			continue
-		else if(copytext(line, 1, 2) == "#")
+		else if(copytext_char(line, 1, 2) == "#")
 			continue
 		else
 			pepper = line

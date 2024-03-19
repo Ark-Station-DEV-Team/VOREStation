@@ -58,7 +58,7 @@
 			scrambled_text += " [w] "
 		else
 			var/nword = scramble_word(w)
-			var/ending = copytext(scrambled_text, length(scrambled_text)-1)
+			var/ending = copytext_char(scrambled_text, length(scrambled_text)-1)
 			if(findtext(ending,"."))
 				nword = capitalize(nword)
 			else if(findtext(ending,"!"))
@@ -69,11 +69,11 @@
 	scrambled_text = replacetext(scrambled_text,"  "," ")
 	scrambled_text = capitalize(scrambled_text)
 	scrambled_text = trim(scrambled_text)
-	var/ending = copytext(scrambled_text, length(scrambled_text))
+	var/ending = copytext_char(scrambled_text, length(scrambled_text))
 	if(ending == ".")
-		scrambled_text = copytext(scrambled_text,1,length(scrambled_text)-1)
+		scrambled_text = copytext_char(scrambled_text,1,length(scrambled_text)-1)
 
-	var/input_ending = copytext(input, length(input))
+	var/input_ending = copytext_char(input, length(input))
 	if(input_ending in list("!","?","."))
 		scrambled_text += input_ending
 
@@ -125,7 +125,7 @@
 
 /datum/language/proc/get_talkinto_msg_range(message)
 	// if you yell, you'll be heard from two tiles over instead of one
-	return (copytext(message, length(message)) == "!") ? 2 : 1
+	return (copytext_char(message, length(message)) == "!") ? 2 : 1
 
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 	log_say("(HIVE) [message]", speaker)

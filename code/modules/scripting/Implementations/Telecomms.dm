@@ -164,7 +164,7 @@
 
 	interpreter.SetProc("pick", GLOBAL_PROC_REF(n_pick))
 	interpreter.SetProc("prob", GLOBAL_PROC_REF(prob_chance))
-	interpreter.SetProc("substr", GLOBAL_PROC_REF(docopytext))
+	interpreter.SetProc("substr", GLOBAL_PROC_REF(docopytext_char))
 
 	// Donkie~
 	// Strings

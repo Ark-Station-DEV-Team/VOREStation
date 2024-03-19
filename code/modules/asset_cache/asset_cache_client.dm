@@ -15,16 +15,16 @@
 	/*var/jsonend = findtextEx(data, "{{{ENDJSONDATA}}}")
 	if (!jsonend)
 		CRASH("invalid asset_cache_preload_data, no jsonendmarker")*/
-	//var/json = html_decode(copytext(data, 1, jsonend))
+	//var/json = html_decode(copytext_char(data, 1, jsonend))
 	var/json = data
-	
+
 	// This is a stupid workaround to BYOND injecting this pngfix mess into IE7 clients browse()
 	json = replacetext(json, "<!--\[if lt IE 7.]>\n<script defer type=text/javascript src=pngfix.js></script>\n<!\[endif]-->", "")
 
 	var/list/preloaded_assets = json_decode(json)
 
 	for (var/preloaded_asset in preloaded_assets)
-		if (copytext(preloaded_asset, findlasttext(preloaded_asset, ".")+1) in list("js", "jsm", "htm", "html"))
+		if (copytext_char(preloaded_asset, findlasttext(preloaded_asset, ".")+1) in list("js", "jsm", "htm", "html"))
 			preloaded_assets -= preloaded_asset
 			continue
 	sent_assets |= preloaded_assets

@@ -54,8 +54,8 @@ GLOBAL_PROTECT(VVpixelmovement)
 		//	the type with the base type removed from the begaining
 		var/fancytype = types[D.type]
 		if (findtext(fancytype, types[type]))
-			fancytype = copytext(fancytype, length(types[type])+1)
-		var/shorttype = copytext("[D.type]", length("[type]")+1)
+			fancytype = copytext_char(fancytype, length(types[type])+1)
+		var/shorttype = copytext_char("[D.type]", length("[type]")+1)
 		if (length(shorttype) > length(fancytype))
 			shorttype = fancytype
 		if (!length(shorttype))
@@ -194,7 +194,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	else
 		variable = L[index]
 		//EXPERIMENTAL - Keep old associated value while modifying key, if any
-		if(IS_VALID_ASSOC_KEY(variable))		
+		if(IS_VALID_ASSOC_KEY(variable))
 			var/found = L[variable]
 			if(!isnull(found))
 				old_assoc_value = found

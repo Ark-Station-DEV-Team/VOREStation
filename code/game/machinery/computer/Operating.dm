@@ -265,7 +265,7 @@
  */
 /proc/pretty_type(var/datum/A)
 	var/typeStr = "[A.type]"
-	. = copytext(typeStr, findlasttext(typeStr, "/") + 1, length(typeStr) + 1)
+	. = copytext_char(typeStr, findlasttext(typeStr, "/") + 1, length(typeStr) + 1)
 	. = capitalize(replacetext(., "_", " "))
 
 /proc/get_surgery_steps_without_basetypes()

@@ -30,7 +30,7 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
  *
  */
 /dmm_suite/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, orientation as num)
-	
+
 	dmmRegex = new/regex({""(\[a-zA-Z]+)" = \\(((?:.|\n)*?)\\)\n(?!\t)|\\((\\d+),(\\d+),(\\d+)\\) = \\{"(\[a-zA-Z\n]*)"\\}"}, "g")
 	trimQuotesRegex = new/regex({"^\[\\s\n]+"?|"?\[\\s\n]+$|^"|"$"}, "g")
 	trimRegex = new/regex("^\[\\s\n]+|\[\\s\n]+$", "g")
@@ -156,7 +156,7 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 							world.maxx = xcrd
 
 					if(xcrd >= 1)
-						var/model_key = copytext(line, tpos, tpos + key_len)
+						var/model_key = copytext_char(line, tpos, tpos + key_len)
 						line_keys[++line_keys.len] = model_key
 						#ifdef TESTING
 							++turfsSkipped
@@ -290,13 +290,13 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 			//finding next member (e.g /turf/unsimulated/wall{icon_state = "rock"} or /area/mine/explored)
 			dpos = find_next_delimiter_position(model, old_position, ",", "{", "}") //find next delimiter (comma here) that's not within {...}
 
-			var/full_def = trim_text(copytext(model, old_position, dpos)) //full definition, e.g : /obj/foo/bar{variables=derp}
+			var/full_def = trim_text(copytext_char(model, old_position, dpos)) //full definition, e.g : /obj/foo/bar{variables=derp}
 			var/variables_start = findtext(full_def, "{")
-			var/atom_def = text2path(trim_text(copytext(full_def, 1, variables_start))) //path definition, e.g /obj/foo/bar
+			var/atom_def = text2path(trim_text(copytext_char(full_def, 1, variables_start))) //path definition, e.g /obj/foo/bar
 			old_position = dpos + 1
 
 			if(!atom_def) // Skip the item if the path does not exist.  Fix your crap, mappers!
-				error("Maploader skipping undefined type: '[trim_text(copytext(full_def, 1, variables_start))]' (key=[model_key])")
+				error("Maploader skipping undefined type: '[trim_text(copytext_char(full_def, 1, variables_start))]' (key=[model_key])")
 				continue
 			members.Add(atom_def)
 
@@ -304,7 +304,7 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 			var/list/fields = list()
 
 			if(variables_start)//if there's any variable
-				full_def = copytext(full_def,variables_start+1,length(full_def))//removing the last '}'
+				full_def = copytext_char(full_def,variables_start+1,length(full_def))//removing the last '}'
 				fields = readlist(full_def, ";", TRUE)
 				if(fields.len)
 					if(!trim(fields[fields.len]))
@@ -470,15 +470,15 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 		var/equal_position = findtext(text,"=",old_position, position)
 
 		// part to the left of = (the key/var name), or the entire value. If treating it as a var name, strip quotes at the same time.
-		var/trim_left = trim_text(copytext(text,old_position,(equal_position ? equal_position : position)), keys_only_string)
+		var/trim_left = trim_text(copytext_char(text,old_position,(equal_position ? equal_position : position)), keys_only_string)
 		old_position = position + 1
 
 		var/trim_right = trim_left
 		if(equal_position)//associative var, so do the association
-			trim_right = trim_text(copytext(text,equal_position+1,position))//the content of the variable
+			trim_right = trim_text(copytext_char(text,equal_position+1,position))//the content of the variable
 			if(!keys_only_string) // We also need to evaluate the key for the types it is permitted to be
 				if(findtext(trim_left,"\"",1,2)) //Check for string
-					trim_left = copytext(trim_left,2,findtext(trim_left,"\"",3,0))
+					trim_left = copytext_char(trim_left,2,findtext(trim_left,"\"",3,0))
 				else if(isnum(text2num(trim_left))) //Check for number
 					trim_left = text2num(trim_left)
 				else if(ispath(text2path(trim_left))) //Check for path
@@ -487,7 +487,7 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 		// Parse the value in trim_right
 		//Check for string
 		if(findtext(trim_right,"\"",1,2))
-			trim_right = copytext(trim_right,2,findtext(trim_right,"\"",3,0))
+			trim_right = copytext_char(trim_right,2,findtext(trim_right,"\"",3,0))
 		//Check for number
 		else if(isnum(text2num(trim_right)))
 			trim_right = text2num(trim_right)
@@ -495,11 +495,11 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 		else if(trim_right == "null")
 			trim_right = null
 		//Check for list
-		else if(copytext(trim_right,1,5) == "list")
-			trim_right = readlist(copytext(trim_right,6,length(trim_right)))
+		else if(copytext_char(trim_right,1,5) == "list")
+			trim_right = readlist(copytext_char(trim_right,6,length(trim_right)))
 		//Check for file
-		else if(copytext(trim_right,1,2) == "'")
-			trim_right = file(copytext(trim_right,2,length(trim_right)))
+		else if(copytext_char(trim_right,1,2) == "'")
+			trim_right = file(copytext_char(trim_right,2,length(trim_right)))
 		//Check for path
 		else if(ispath(text2path(trim_right)))
 			trim_right = text2path(trim_right)

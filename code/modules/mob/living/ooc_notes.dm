@@ -27,13 +27,14 @@
 				.content {
 					padding: 5;
 					width: 100%;
+					color: white;
 					background-color: #363636;
 				}
 
 				</style>
 			</head>"}
 
-	dat += {"<body><table>"}
+	dat += {"<body bgcolor= "#5e5e5e"><table>"}
 	if(user == src)
 		dat += {"
 			<td class="button">
@@ -105,10 +106,5 @@
 	if(src.ckey)
 		key = "[key][src.ckey]"				//Add a ckey if they have one, in case their name is the same
 
-	winclone(user, "ooc_notes", key)		//Allows us to have more than one OOC notes panel open
-
-	winshow(user, key, TRUE)				//Register our window
-	var/datum/browser/popup = new(user, key, "OOC Notes: [src.name]", 500, 600)		//Create the window
-	popup.set_content(dat)	//Populate window contents
-	popup.open(FALSE) // Skip registring onclose on the browser pane
+	show_browser(user, dat, "window=book;size=[600]x[400]")
 	onclose(user, key, src) // We want to register on the window itself

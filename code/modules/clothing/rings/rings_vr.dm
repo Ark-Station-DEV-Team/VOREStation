@@ -7,7 +7,7 @@
 	var/partnername = ""
 
 /obj/item/clothing/gloves/ring/wedding/attack_self(mob/user)
-	partnername = copytext(sanitize(input(user, "Would you like to change the holoengraving on the ring?", "Name your spouse", "Bae") as null|text),1,MAX_NAME_LEN)
+	partnername = copytext_char(sanitize(input(user, "Would you like to change the holoengraving on the ring?", "Name your spouse", "Bae") as null|text),1,MAX_NAME_LEN)
 	name = "[initial(name)] - [partnername]"
 
 /obj/item/clothing/gloves/ring/wedding/silver

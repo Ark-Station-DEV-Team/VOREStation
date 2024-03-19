@@ -109,7 +109,7 @@
 	var/list/tokens=new
 	for(, src.codepos<=length(code), src.codepos++)
 
-		var/char=copytext(code, codepos, codepos+1)
+		var/char=copytext_char(code, codepos, codepos+1)
 		if(char=="\n")
 			line++
 			linepos=codepos
@@ -146,11 +146,11 @@
 /n_Scanner/nS_Scanner/proc/ReadString(start)
 	var/buf
 	for(, codepos <= length(code), codepos++)//codepos to length(code))
-		var/char=copytext(code, codepos, codepos+1)
+		var/char=copytext_char(code, codepos, codepos+1)
 		switch(char)
 			if("\\")					//Backslash (\) encountered in string
 				codepos++       //Skip next character in string, since it was escaped by a backslash
-				char=copytext(code, codepos, codepos+1)
+				char=copytext_char(code, codepos, codepos+1)
 				switch(char)
 					if("\\")      //Double backslash
 						buf+="\\"
@@ -179,11 +179,11 @@ Proc: ReadWord
 Reads characters separated by an item in <delim> into a token.
 */
 /n_Scanner/nS_Scanner/proc/ReadWord()
-	var/char=copytext(code, codepos, codepos+1)
+	var/char=copytext_char(code, codepos, codepos+1)
 	var/buf
 	while(!delim.Find(char) && codepos<=length(code))
 		buf+=char
-		char=copytext(code, ++codepos, codepos+1)
+		char=copytext_char(code, ++codepos, codepos+1)
 	codepos-- //allow main Scan() proc to read the delimiter
 	if(options.keywords.Find(buf))
 		return new /token/keyword(buf, line, COL)
@@ -195,13 +195,13 @@ Proc: ReadSymbol
 Reads a symbol into a token.
 */
 /n_Scanner/nS_Scanner/proc/ReadSymbol()
-	var/char=copytext(code, codepos, codepos+1)
+	var/char=copytext_char(code, codepos, codepos+1)
 	var/buf
 
 	while(options.symbols.Find(buf+char))
 		buf+=char
 		if(++codepos>length(code)) break
-		char=copytext(code, codepos, codepos+1)
+		char=copytext_char(code, codepos, codepos+1)
 
 	codepos-- //allow main Scan() proc to read the next character
 	return new /token/symbol(buf, line, COL)
@@ -211,7 +211,7 @@ Proc: ReadNumber
 Reads a number into a token.
 */
 /n_Scanner/nS_Scanner/proc/ReadNumber()
-	var/char=copytext(code, codepos, codepos+1)
+	var/char=copytext_char(code, codepos, codepos+1)
 	var/buf
 	var/dec=0
 
@@ -219,7 +219,7 @@ Reads a number into a token.
 		if(char==".") dec=1
 		buf+=char
 		codepos++
-		char=copytext(code, codepos, codepos+1)
+		char=copytext_char(code, codepos, codepos+1)
 	var/token/number/T=new(buf, line, COL)
 	if(isnull(text2num(buf)))
 		errors+=new/scriptError("Bad number: ", T)
@@ -233,8 +233,8 @@ Reads a comment and outputs the type of comment
 */
 
 /n_Scanner/nS_Scanner/proc/ReadComment()
-	var/char=copytext(code, codepos, codepos+1)
-	var/nextchar=copytext(code, codepos+1, codepos+2)
+	var/char=copytext_char(code, codepos, codepos+1)
+	var/nextchar=copytext_char(code, codepos+1, codepos+2)
 	var/charstring = char+nextchar
 	var/comm = 1
 		// 1: single-line comment
@@ -249,19 +249,19 @@ Reads a comment and outputs the type of comment
 			if(++codepos>length(code)) break
 
 			if(expectedend) // ending statement expected...
-				char = copytext(code, codepos, codepos+1)
+				char = copytext_char(code, codepos, codepos+1)
 				if(char == "/") // ending statement found - beak the comment
 					comm = 0
 					break
 
 			if(comm == 2)
 				// multi-line comments are broken by ending statements
-				char = copytext(code, codepos, codepos+1)
+				char = copytext_char(code, codepos, codepos+1)
 				if(char == "*")
 					expectedend = 1
 					continue
 			else
-				char = copytext(code, codepos, codepos+1)
+				char = copytext_char(code, codepos, codepos+1)
 				if(char == "\n")
 					comm = 0
 					break
@@ -270,4 +270,3 @@ Reads a comment and outputs the type of comment
 
 		if(comm == 2)
 			errors+=new/scriptError/UnterminatedComment()
-

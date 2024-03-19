@@ -229,7 +229,7 @@ var/list/mentor_verbs_default = list(
 	if (src.handle_spam_prevention(msg,MUTE_ADMINHELP))
 		return
 
-	msg = trim(sanitize(copytext(msg,1,MAX_MESSAGE_LEN)))
+	msg = trim(sanitize(copytext_char(msg,1,MAX_MESSAGE_LEN)))
 	if(!msg)
 		return
 

@@ -31,7 +31,7 @@ var/const  //Ascii values of characters
 		return 0
 	if(length(id)==1) return 1
 	for(var/i=2 to length(id))
-		if(!IsValidIDChar(copytext(id, i, i+1)))
+		if(!IsValidIDChar(copytext_char(id, i, i+1)))
 			return 0
 	return 1
 

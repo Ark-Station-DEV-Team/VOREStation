@@ -336,7 +336,7 @@
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 /mob/living/silicon/pai/proc/savefile_path(mob/user)
-	return "data/player_saves/[copytext(user.ckey, 1, 2)]/[user.ckey]/pai.sav"
+	return "data/player_saves/[copytext_char(user.ckey, 1, 2)]/[user.ckey]/pai.sav"
 
 /mob/living/silicon/pai/proc/savefile_save(mob/user)
 	if(IsGuestKey(user.key))

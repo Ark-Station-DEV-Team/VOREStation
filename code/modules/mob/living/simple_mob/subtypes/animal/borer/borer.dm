@@ -229,13 +229,13 @@
 		to_chat(src, span("danger", "You cannot speak in IC (muted)."))
 		return
 
-	if(copytext(message, 1, 2) == "*")
-		return emote(copytext(message, 2))
+	if(copytext_char(message, 1, 2) == "*")
+		return emote(copytext_char(message, 2))
 
 	var/list/message_pieces = parse_languages(message)
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if(S.speaking && S.speaking.flags & HIVEMIND)
-			S.speaking.broadcast(src, trim(copytext(message, 3)), src.true_name)
+			S.speaking.broadcast(src, trim(copytext_char(message, 3)), src.true_name)
 			return
 
 	if(!host)

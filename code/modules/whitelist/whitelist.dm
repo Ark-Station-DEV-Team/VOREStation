@@ -22,7 +22,7 @@
 
 
 /proc/load_whitelist(var/key)
-	var/filename = "data/player_saves/[copytext(ckey(key),1,2)]/[ckey(key)]/whitelist.json"
+	var/filename = "data/player_saves/[copytext_char(ckey(key),1,2)]/[ckey(key)]/whitelist.json"
 	try
 		// Check the player-specific whitelist file, if it exists.
 		if(fexists(filename))
@@ -41,7 +41,7 @@
 				error("Exception when deleting tmp whitelist file [filename].tmp")
 
 		// Whitelist file doesn't exist, so they aren't whitelisted for anything. Create the file.
-		else if(fexists("data/player_saves/[copytext(ckey(key),1,2)]/[ckey(key)]/preferences.sav"))
+		else if(fexists("data/player_saves/[copytext_char(ckey(key),1,2)]/[ckey(key)]/preferences.sav"))
 			text2file("", filename)
 			. = list()
 

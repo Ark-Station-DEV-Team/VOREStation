@@ -134,7 +134,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 /datum/vore_preferences/proc/load_path(ckey, slot, filename="character", ext="json")
 	if(!ckey || !slot)
 		return
-	path = "data/player_saves/[copytext(ckey,1,2)]/[ckey]/vore/[filename][slot].[ext]"
+	path = "data/player_saves/[copytext_char(ckey,1,2)]/[ckey]/vore/[filename][slot].[ext]"
 
 
 /datum/vore_preferences/proc/load_vore()

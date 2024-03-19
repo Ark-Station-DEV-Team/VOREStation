@@ -258,7 +258,7 @@
 		var/turf/T = get_turf(src)
 		var/playedmessage = mytape.storedinfo[i]
 		if (findtextEx(playedmessage,"*",1,2)) //remove marker for action sounds
-			playedmessage = copytext(playedmessage,2)
+			playedmessage = copytext_char(playedmessage,2)
 		T.audible_message(span_maroon("<B>Tape Recorder</B>: [playedmessage]"), runemessage = playedmessage)
 
 		if(mytape.storedinfo.len < i+1)

@@ -143,7 +143,7 @@
 	if(label_text == "")
 		name = base_name
 	else if(length(label_text) > 20)
-		var/short_label_text = copytext(label_text, 1, 21)
+		var/short_label_text = copytext_char(label_text, 1, 21)
 		name = "[base_name] ([short_label_text]...)"
 	else
 		name = "[base_name] ([label_text])"

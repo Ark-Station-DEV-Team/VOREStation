@@ -51,28 +51,28 @@
 			return
 	var/new_facial = input(usr, "Please select facial hair color.", "Character Generation") as color
 	if(new_facial)
-		M.r_facial = hex2num(copytext(new_facial, 2, 4))
-		M.g_facial = hex2num(copytext(new_facial, 4, 6))
-		M.b_facial = hex2num(copytext(new_facial, 6, 8))
+		M.r_facial = hex2num(copytext_char(new_facial, 2, 4))
+		M.g_facial = hex2num(copytext_char(new_facial, 4, 6))
+		M.b_facial = hex2num(copytext_char(new_facial, 6, 8))
 
 	var/new_hair = input(usr, "Please select hair color.", "Character Generation") as color
 	if(new_facial)
-		M.r_hair = hex2num(copytext(new_hair, 2, 4))
-		M.g_hair = hex2num(copytext(new_hair, 4, 6))
-		M.b_hair = hex2num(copytext(new_hair, 6, 8))
+		M.r_hair = hex2num(copytext_char(new_hair, 2, 4))
+		M.g_hair = hex2num(copytext_char(new_hair, 4, 6))
+		M.b_hair = hex2num(copytext_char(new_hair, 6, 8))
 
 	var/new_eyes = input(usr, "Please select eye color.", "Character Generation") as color
 	if(new_eyes)
-		M.r_eyes = hex2num(copytext(new_eyes, 2, 4))
-		M.g_eyes = hex2num(copytext(new_eyes, 4, 6))
-		M.b_eyes = hex2num(copytext(new_eyes, 6, 8))
+		M.r_eyes = hex2num(copytext_char(new_eyes, 2, 4))
+		M.g_eyes = hex2num(copytext_char(new_eyes, 4, 6))
+		M.b_eyes = hex2num(copytext_char(new_eyes, 6, 8))
 		M.update_eyes()
 
 	var/new_skin = input(usr, "Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation") as color
 	if(new_skin)
-		M.r_skin = hex2num(copytext(new_skin, 2, 4))
-		M.g_skin = hex2num(copytext(new_skin, 4, 6))
-		M.b_skin = hex2num(copytext(new_skin, 6, 8))
+		M.r_skin = hex2num(copytext_char(new_skin, 2, 4))
+		M.g_skin = hex2num(copytext_char(new_skin, 4, 6))
+		M.b_skin = hex2num(copytext_char(new_skin, 6, 8))
 
 	var/new_tone = tgui_input_number(usr, "Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation", null, 220, 1)
 

@@ -99,7 +99,7 @@
 				"show_full_feedback" = 1,
 				"feedback_author" = row_data[SQLITE_FEEDBACK_COLUMN_AUTHOR],
 				"feedback_content" = row_data[SQLITE_FEEDBACK_COLUMN_CONTENT]
-				), "[copytext(text, 1, 64)]... ([length(text)])")
+				), "[copytext_char(text, 1, 64)]... ([length(text)])")
 		else
 			text = replacetext(text, "\n", "<br>")
 		dat += "<td>[text]</td>"

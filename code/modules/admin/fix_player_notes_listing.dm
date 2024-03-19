@@ -4,7 +4,7 @@
 	for(var/subdir in flist("data/player_saves/"))
 		for(var/ckey in flist("data/player_saves/[subdir]"))
 			if(fexists("data/player_saves/[subdir][ckey]info.sav"))
-				has_notes += copytext(ckey, 1, -1) // Trim the tailing /
+				has_notes += copytext_char(ckey, 1, -1) // Trim the tailing /
 
 	//Updating list of keys with notes on them
 	var/savefile/note_list = new("data/player_notes.sav")

@@ -24,7 +24,7 @@
 	if(!istype(usr, /mob/living)) return
 	if(usr.stat) return
 
-	var/base_icon = copytext(icon_state,1,(length(icon_state) - 3 + headphones_on))
+	var/base_icon = copytext_char(icon_state,1,(length(icon_state) - 3 + headphones_on))
 
 	if(headphones_on)
 		icon_state = "[base_icon]_off"

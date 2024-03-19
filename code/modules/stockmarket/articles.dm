@@ -5,7 +5,7 @@
 	return pick("A", "E", "I", "O", "U")
 
 /proc/ucfirst(var/S)
-	return "[uppertext(ascii2text(text2ascii(S, 1)))][copytext(S, 2)]"
+	return "[uppertext(ascii2text(text2ascii(S, 1)))][copytext_char(S, 2)]"
 
 /proc/ucfirsts(var/S)
 	var/list/L = splittext(S, " ")

@@ -416,7 +416,7 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 
 	var/webhook_length_limit = 1900 // The actual limit is a little higher.
 	if(length(summary) > webhook_length_limit)
-		summary = copytext(summary, 1, webhook_length_limit + 1)
+		summary = copytext_char(summary, 1, webhook_length_limit + 1)
 		summary += "\n\[Truncated\]"
 
 	SSwebhooks.send(

@@ -83,7 +83,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 					desclines.Add(srcinfo)
 					srcinfo = null
 					continue
-			if(copytext(line, 1, 3) != "  ")
+			if(copytext_char(line, 1, 3) != "  ")
 				desclines += ("  " + line) // Pad any unpadded lines, so they look pretty
 			else
 				desclines += line

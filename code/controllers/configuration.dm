@@ -336,7 +336,7 @@ var/list/gamemode_cache = list()
 		t = trim(t)
 		if (length(t) == 0)
 			continue
-		else if (copytext(t, 1, 2) == "#")
+		else if (copytext_char(t, 1, 2) == "#")
 			continue
 
 		var/pos = findtext(t, " ")
@@ -344,8 +344,8 @@ var/list/gamemode_cache = list()
 		var/value = null
 
 		if (pos)
-			name = lowertext(copytext(t, 1, pos))
-			value = copytext(t, pos + 1)
+			name = lowertext(copytext_char(t, 1, pos))
+			value = copytext_char(t, pos + 1)
 		else
 			name = lowertext(t)
 
@@ -620,8 +620,8 @@ var/list/gamemode_cache = list()
 					var/prob_value = null
 
 					if (prob_pos)
-						prob_name = lowertext(copytext(value, 1, prob_pos))
-						prob_value = copytext(value, prob_pos + 1)
+						prob_name = lowertext(copytext_char(value, 1, prob_pos))
+						prob_value = copytext_char(value, prob_pos + 1)
 						if (prob_name in config.modes)
 							config.probabilities[prob_name] = text2num(prob_value)
 						else
@@ -636,8 +636,8 @@ var/list/gamemode_cache = list()
 					var/is_secret_override = findtext(name, "required_players_secret") // Being extra sure we're not picking up an override for Secret by accident.
 
 					if(req_pos)
-						req_name = lowertext(copytext(value, 1, req_pos))
-						req_value = copytext(value, req_pos + 1)
+						req_name = lowertext(copytext_char(value, 1, req_pos))
+						req_value = copytext_char(value, req_pos + 1)
 						if(req_name in config.modes)
 							if(is_secret_override)
 								config.player_requirements_secret[req_name] = text2num(req_value)
@@ -1067,7 +1067,7 @@ var/list/gamemode_cache = list()
 		t = trim(t)
 		if (length(t) == 0)
 			continue
-		else if (copytext(t, 1, 2) == "#")
+		else if (copytext_char(t, 1, 2) == "#")
 			continue
 
 		var/pos = findtext(t, " ")
@@ -1075,8 +1075,8 @@ var/list/gamemode_cache = list()
 		var/value = null
 
 		if (pos)
-			name = lowertext(copytext(t, 1, pos))
-			value = copytext(t, pos + 1)
+			name = lowertext(copytext_char(t, 1, pos))
+			value = copytext_char(t, pos + 1)
 		else
 			name = lowertext(t)
 
@@ -1113,7 +1113,7 @@ var/list/gamemode_cache = list()
 		t = trim(t)
 		if (length(t) == 0)
 			continue
-		else if (copytext(t, 1, 2) == "#")
+		else if (copytext_char(t, 1, 2) == "#")
 			continue
 
 		var/pos = findtext(t, " ")
@@ -1121,8 +1121,8 @@ var/list/gamemode_cache = list()
 		var/value = null
 
 		if (pos)
-			name = lowertext(copytext(t, 1, pos))
-			value = copytext(t, pos + 1)
+			name = lowertext(copytext_char(t, 1, pos))
+			value = copytext_char(t, pos + 1)
 		else
 			name = lowertext(t)
 

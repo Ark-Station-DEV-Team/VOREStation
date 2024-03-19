@@ -60,7 +60,7 @@
 	..()
 	if(href_list["tag"] )
 		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gpstag)
-		a = uppertext(copytext(sanitize(a), 1, 5))
+		a = uppertext(copytext_char(sanitize(a), 1, 5))
 		if(src.loc == usr)
 			gpstag = a
 			name = "global positioning system ([gpstag])"

@@ -288,7 +288,7 @@ GLOBAL_LIST(tgui_modals)
 /datum/tgui_modal/input/preprocess_answer(answer)
 	. = ..(answer)
 	if(length(answer) > max_length)
-		. = copytext(., 1, max_length + 1)
+		. = copytext_char(., 1, max_length + 1)
 
 /datum/tgui_modal/input/to_data()
 	. = ..()

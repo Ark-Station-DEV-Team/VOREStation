@@ -17,7 +17,7 @@
 		desc = "[initial(desc)] This one is assigned to [user.real_name]."
 		named = 1
 		/* //Another way of naming the device. Gives more freedom, but could lead to issues.
-		device_name = copytext(sanitize(input(user, "What would you like to name your device? You must input a name before the device can be used.", "Name your device", "") as null|text),1,MAX_NAME_LEN)
+		device_name = copytext_char(sanitize(input(user, "What would you like to name your device? You must input a name before the device can be used.", "Name your device", "") as null|text),1,MAX_NAME_LEN)
 		name = "[initial(name)] - [device_name]"
 		named = 1
 		*/

@@ -134,7 +134,7 @@
 	mydna = new ()
 	mydna.dna = M.dna.Clone()
 	mydna.ckey = M.ckey
-	mydna.id = copytext(md5(M.real_name), 2, 6)
+	mydna.id = copytext_char(md5(M.real_name), 2, 6)
 	mydna.name = M.dna.real_name
 	mydna.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
 	mydna.flavor = M.flavor_texts.Copy()

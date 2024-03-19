@@ -10,6 +10,8 @@
 
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
+#define to_target(target, payload)                          target << (payload)
+
 // #define to_chat(target, message) target << message Not anymore!
 //#define to_chat to_chat_filename=__FILE__;to_chat_line=__LINE__;to_chat_src=src;__to_chat
 //#define to_chat __to_chat
@@ -18,8 +20,10 @@
 // TODO - Baystation has this log to crazy places. For now lets just world.log, but maybe look into it later.
 #define log_world(message) to_world_log(message)
 #define to_file(file_entry, source_var) file_entry << source_var
+#define place_meta_charset(content) istext(content) ? "<meta charset=\"utf-8\">" + content : content
+
 #define from_file(file_entry, target_var) file_entry >> target_var
-#define show_browser(target, browser_content, browser_name) target << browse(browser_content, browser_name)
+#define show_browser(target, browser_content, browser_name) to_target(target, browse(place_meta_charset(browser_content), browser_name))
 #define send_rsc(target, rsc_content, rsc_name)	target << browse_rsc(rsc_content, rsc_name)
 #define open_link(target, url) target << link(url)
 

@@ -257,7 +257,7 @@
 		node += "*"
 		i++
 
-	else if (copytext(token(i), 1, 2) == "/")
+	else if (copytext_char(token(i), 1, 2) == "/")
 		i = object_type(i, node)
 
 	else
@@ -378,7 +378,7 @@
 //object_type:	<type path>
 /datum/SDQL_parser/proc/object_type(i, list/node)
 
-	if (copytext(token(i), 1, 2) != "/")
+	if (copytext_char(token(i), 1, 2) != "/")
 		return parse_error("Expected type, but it didn't begin with /")
 
 	var/path = text2path(token(i))
@@ -417,7 +417,7 @@
 //string:	''' <some text> ''' | '"' <some text > '"'
 /datum/SDQL_parser/proc/string(i, list/node)
 
-	if(copytext(token(i), 1, 2) in list("'", "\""))
+	if(copytext_char(token(i), 1, 2) in list("'", "\""))
 		node += token(i)
 
 	else
@@ -428,7 +428,7 @@
 //array:	'[' expression, expression, ... ']'
 /datum/SDQL_parser/proc/array(var/i, var/list/node)
 	// Arrays get turned into this: list("[", list(exp_1a = exp_1b, ...), ...), "[" is to mark the next node as an array.
-	if(copytext(token(i), 1, 2) != "\[")
+	if(copytext_char(token(i), 1, 2) != "\[")
 		parse_error("Expected an array but found '[token(i)]'")
 		return i + 1
 
@@ -614,20 +614,20 @@
 		node += "null"
 		i++
 
-	else if(lowertext(copytext(token(i), 1, 3)) == "0x" && isnum(hex2num(copytext(token(i), 3))))
-		node += hex2num(copytext(token(i), 3))
+	else if(lowertext(copytext_char(token(i), 1, 3)) == "0x" && isnum(hex2num(copytext_char(token(i), 3))))
+		node += hex2num(copytext_char(token(i), 3))
 		i++
 
 	else if(isnum(text2num(token(i))))
 		node += text2num(token(i))
 		i++
 
-	else if(copytext(token(i), 1, 2) in list("'", "\""))
+	else if(copytext_char(token(i), 1, 2) in list("'", "\""))
 		i = string(i, node)
 
-	else if(copytext(token(i), 1, 2) == "\[") // Start a list.
+	else if(copytext_char(token(i), 1, 2) == "\[") // Start a list.
 		i = array(i, node)
-	else if(copytext(token(i), 1, 2) == "/")
+	else if(copytext_char(token(i), 1, 2) == "/")
 		i = object_type(i, node)
 	else
 		i = variable(i, node)

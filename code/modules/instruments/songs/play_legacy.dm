@@ -27,7 +27,7 @@
 					if((key < 1) || (key > 7))
 						continue
 					for(var/i in 2 to length(note))
-						var/oct_acc = copytext(note, i, i + 1)
+						var/oct_acc = copytext_char(note, i, i + 1)
 						var/num = text2num(oct_acc)
 						if(!num) //it's an accidental
 							accents[key] = oct_acc //if they misspelled it/fucked up that's on them lmao, no safety checks.

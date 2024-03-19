@@ -210,7 +210,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	var/datum/dna2/record/R = new /datum/dna2/record()
 	R.dna = brainmob.dna
 	R.ckey = brainmob.ckey
-	R.id = copytext(md5(brainmob.real_name), 2, 6)
+	R.id = copytext_char(md5(brainmob.real_name), 2, 6)
 	R.name = R.dna.real_name
 	R.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
 	R.languages = brainmob.languages

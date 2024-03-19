@@ -167,20 +167,20 @@
 /proc/hex2rgb(hex)
 	// Strips the starting #, in case this is ever supplied without one, so everything doesn't break.
 	if(findtext(hex,"#",1,2))
-		hex = copytext(hex, 2)
+		hex = copytext_char(hex, 2)
 	return list(hex2rgb_r(hex), hex2rgb_g(hex), hex2rgb_b(hex))
 
 // The three procs below require that the '#' part of the hex be stripped, which hex2rgb() does automatically.
 /proc/hex2rgb_r(hex)
-	var/hex_to_work_on = copytext(hex,1,3)
+	var/hex_to_work_on = copytext_char(hex,1,3)
 	return hex2num(hex_to_work_on)
 
 /proc/hex2rgb_g(hex)
-	var/hex_to_work_on = copytext(hex,3,5)
+	var/hex_to_work_on = copytext_char(hex,3,5)
 	return hex2num(hex_to_work_on)
 
 /proc/hex2rgb_b(hex)
-	var/hex_to_work_on = copytext(hex,5,7)
+	var/hex_to_work_on = copytext_char(hex,5,7)
 	return hex2num(hex_to_work_on)
 
 /**
@@ -299,9 +299,9 @@
 /proc/color_hex2num(A)
 	if(!A || length(A) != length_char(A))
 		return 0
-	var/R = hex2num(copytext(A, 2, 4))
-	var/G = hex2num(copytext(A, 4, 6))
-	var/B = hex2num(copytext(A, 6, 8))
+	var/R = hex2num(copytext_char(A, 2, 4))
+	var/G = hex2num(copytext_char(A, 4, 6))
+	var/B = hex2num(copytext_char(A, 6, 8))
 	return R+G+B
 
 /**
@@ -312,12 +312,12 @@
 	var/length = length(string)
 	if((length != 7 && length != 9) || length != length_char(string))
 		return color_matrix_identity()
-	var/r = hex2num(copytext(string, 2, 4)) / 255
-	var/g = hex2num(copytext(string, 4, 6)) / 255
-	var/b = hex2num(copytext(string, 6, 8)) / 255
+	var/r = hex2num(copytext_char(string, 2, 4)) / 255
+	var/g = hex2num(copytext_char(string, 4, 6)) / 255
+	var/b = hex2num(copytext_char(string, 6, 8)) / 255
 	var/a = 1
 	if(length == 9)
-		a = hex2num(copytext(string, 8, 10)) / 255
+		a = hex2num(copytext_char(string, 8, 10)) / 255
 	if(!isnum(r) || !isnum(g) || !isnum(b) || !isnum(a))
 		return color_matrix_identity()
 	return list(
@@ -420,7 +420,7 @@
 	var/delim_pos = findlasttext(strtype, "/")
 	if(delim_pos == 0)
 		return strtype
-	return copytext(strtype, delim_pos)
+	return copytext_char(strtype, delim_pos)
 
 // Concatenates a list of strings into a single string.  A seperator may optionally be provided.
 /proc/list2text(list/ls, sep)
@@ -519,7 +519,7 @@
 
 	do
 		found       = findtext(text, delimiter, last_found, 0)
-		.          += copytext(text, last_found, found)
+		.          += copytext_char(text, last_found, found)
 		last_found  = found + delim_len
 	while (found)
 
@@ -527,7 +527,7 @@
 	var/string_type = "[child]"
 	var/last_slash = findlasttext(string_type, "/")
 	if (last_slash != 1)
-		return text2path(copytext(string_type, 1, last_slash))
+		return text2path(copytext_char(string_type, 1, last_slash))
 	switch (child)
 		if (/datum)
 			return null

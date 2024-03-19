@@ -38,7 +38,7 @@
 
 /obj/item/weapon/paper/admin/proc/generateHeader()
 	var/originhash = md5("[origin]")
-	var/timehash = copytext(md5("[world.time]"),1,10)
+	var/timehash = copytext_char(md5("[world.time]"),1,10)
 	var/text = null
 	var/logo = tgui_alert(usr, "Do you want the header of your fax to have a NanoTrasen, SolGov, or Trader logo?","Fax Logo",list("NanoTrasen","SolGov","Trader")) //VOREStation Add - Trader
 	if(logo == "SolGov")
@@ -127,7 +127,7 @@
 				if(footerOn)
 					info += footer
 				updateinfolinks()
-				usr << browse(null, "window=[name]")
+				show_browser(usr, null, "window=[name]")
 				admindatum.faxCallback(src, destination)
 		return
 
@@ -138,7 +138,7 @@
 		return
 
 	if(href_list["cancel"])
-		usr << browse(null, "window=[name]")
+		show_browser(usr, null, "window=[name]")
 		qdel(src)
 		return
 
