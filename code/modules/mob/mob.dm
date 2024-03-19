@@ -503,11 +503,11 @@
 	if(href_list["mach_close"])
 		var/t1 = text("window=[href_list["mach_close"]]")
 		unset_machine()
-		show_browser(src, null, "window=book;size=[500]x[200]")
+		show_browser(usr, null, "window=book;size=[500]x[200]")
 
 	if(href_list["flavor_more"])
 		var/dat = (text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")))
-		show_browser(src, dat, "window=book;size=[500]x[200]")
+		show_browser(usr, dat, "window=book;size=[500]x[200]")
 		onclose(usr, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()
